@@ -1,0 +1,68 @@
+body {
+	margin: 0;
+	font-family: 'Arial', sans-serif;
+	background-color: #ededed;
+}
+
+nav {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	background-color: #444;
+	text-align: center;
+}
+
+nav a {
+	display: inline-block;
+	color: white;
+	text-decoration: none;
+	padding: 14px 16px;
+}
+
+nav a:hover {
+	background-color: #222;
+}
+
+hr {
+	background-color: #444;
+	height: 10px;
+	width: 700px;
+}
+
+.title-header {
+	font-family: 'Trebuchet MS', sans-serif;
+	text-align: center;
+}
+
+#personal-photo {
+	border-radius: 20%;
+	width: 150px;
+	height: 200px;
+	float: left;
+}
+
+.text {
+
+	padding: 10px;
+	margin: auto;
+	max-width: 700px;
+	font-family: 'Trebuchet MS', sans-serif;
+	color: rgb(120, 120, 120);
+}
+
+/* game.html */
+.letters {
+	text-align: center;
+}
+
+.letters img {
+	width: 10%;
+	display: inline-block;
+	border: 1px solid black;
+	margin-top: 10px;
+}
+
+.button-container {
+	text-align: center;
+}

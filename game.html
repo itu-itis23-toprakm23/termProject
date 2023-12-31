@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="main.js"></script>
+	<title></title>
+</head>
+<body>
+	<!-- Navbar -->
+    <nav>
+        <a href="index.html"> About Me </a>
+        <a href="game.html"> Memory Game </a>
+    </nav>
+    <!-- Memory Game -->
+	<div class="letters">
+		<img src="img/m.svg" alt="letter M" id='m'>
+		<img src="img/u.svg" alt="letter U" id='u'>
+		<img src="img/r.svg" alt="letter R" id='r'>
+		<img src="img/a.svg" alt="letter A" id='a'>
+		<img src="img/t.svg" alt="letter T" id='t'>
+	</div>
+	<div class="button-container">
+		<button style="margin-top: 10px;" onclick="facedown(); addRestart()"> Start Game </button>
+		<p> Score: </p>
+	</div>
+</body>
+</html>
