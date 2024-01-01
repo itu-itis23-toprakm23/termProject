@@ -9,7 +9,7 @@ function facedown() {
 
 	// Matching new sources of the images
 	arr = [images[0], images[1], images[2], images[3], images[4]];  // Copying images 
-	srcs = ["img/m.svg", "img/u.svg", "img/r.svg", "img/a.svg", "img/t.svg"]
+	srcs = ["img/M.svg", "img/U.svg", "img/R.svg", "img/A.svg", "img/T.svg"]
 	for (let i=0; i<5; i++) {
 		arr[i].src = srcs[shuffledArray[i]];
 	}
