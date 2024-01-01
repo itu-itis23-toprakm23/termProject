@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="main.js"></script>
-	<title></title>
+	<title>Memory Game</title>
 </head>
 <body>
 	<!-- Navbar -->
@@ -14,16 +14,33 @@
         <a href="game.html"> Memory Game </a>
     </nav>
     <!-- Memory Game -->
-	<div class="letters">
-		<img src="img/m.svg" alt="letter M" id='m'>
-		<img src="img/u.svg" alt="letter U" id='u'>
-		<img src="img/r.svg" alt="letter R" id='r'>
-		<img src="img/a.svg" alt="letter A" id='a'>
-		<img src="img/t.svg" alt="letter T" id='t'>
+	<div id='image-container' class="letters">
+		<img src="img/m.svg" alt="letter M" id="m" class='unclickable'>
+		<img src="img/u.svg" alt="letter U" id="u" class='unclickable'>
+		<img src="img/r.svg" alt="letter R" id="r" class='unclickable'>
+		<img src="img/a.svg" alt="letter A" id="a" class='unclickable'>
+		<img src="img/t.svg" alt="letter T" id="t" class='unclickable'>
 	</div>
 	<div class="button-container">
-		<button style="margin-top: 10px;" onclick="facedown(); addRestart()"> Start Game </button>
-		<p> Score: </p>
+		<button type="submit" style="margin-top: 10px;" onclick="facedown()" id="startButton"> Start Game </button>
+		<button type="submit" style="margin-top: 10px; display: none;" onclick="restart()" id="restartButton"> Restart </button>
+		<script type="text/javascript">
+			function restart() {
+				window.location.href = window.location.pathname + '?refresh=true';
+			}
+
+			if (window.location.search.includes('refresh=true')) {
+				document.getElementById('startButton').style.display = 'none';
+				facedown();
+			}
+		</script>
+		<p id="scoreTag"> Score: </p>
+		<br>
+		<p id='winParagraph' style="display: none;"> Congrats, you won the game! </p>
+		<p id='loseParagraph' style="display: none;"> You lost the game! </p>
+	</div>
+	<div>
+		<p class="text"> Note: You must click the cards in the correct order of my name 'Murat'. You earn 100 points and win the game if you correctly follow the sequence. Otherwise, you lose the game.</p>
 	</div>
 </body>
 </html>

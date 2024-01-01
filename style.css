@@ -43,12 +43,11 @@ hr {
 }
 
 .text {
-
 	padding: 10px;
 	margin: auto;
 	max-width: 700px;
 	font-family: 'Trebuchet MS', sans-serif;
-	color: rgb(120, 120, 120);
+	color: rgb(60, 60, 60);
 }
 
 /* game.html */
@@ -61,6 +60,7 @@ hr {
 	display: inline-block;
 	border: 1px solid black;
 	margin-top: 10px;
+	cursor: pointer;
 }
 
 .button-container {
