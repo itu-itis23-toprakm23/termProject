@@ -13,34 +13,40 @@
         <a href="index.html"> About Me </a>
         <a href="game.html"> Memory Game </a>
     </nav>
+    <!-- Metadata -->
+    <h1 class="title-header"> Welcome to Memory Game! </h1>
+    <hr style="height: 2px;">
+    <div class="text" style="padding-top: 0; padding-bottom: 5px;">
+        <p align="justify"> You can start the game by simply clicking 'Start Game' button. After that, letters of my name -'M','U','R','A','T'- will be randomly shuffled and you have 2 seconds before they face down. When they face down, you need to click on letters in the correct order of my name. If you make a wrong attempt, you lose the game.</p>
+    </div>
     <!-- Memory Game -->
-	<div id='image-container' class="letters">
-		<img src="img/M.svg" alt="letter M" id="m" class='unclickable'>
-		<img src="img/U.svg" alt="letter U" id="u" class='unclickable'>
-		<img src="img/R.svg" alt="letter R" id="r" class='unclickable'>
-		<img src="img/A.svg" alt="letter A" id="a" class='unclickable'>
-		<img src="img/T.svg" alt="letter T" id="t" class='unclickable'>
+	<div class='card-container'>
+		<div class='card'>
+			<div class='card-front'><img src="img/M.svg"></div>
+			<div id="letter-M" class='card-back' ></div>
+		</div>
+		<div class='card'>
+			<div class='card-front'><img id="letter-U" src="img/U.svg"></div>
+			<div id="letter-U" class='card-back'></div>
+		</div>
+		<div class='card'>
+			<div class='card-front'><img id="letter-R" src="img/R.svg"></div>
+			<div id="letter-R" class='card-back'></div>
+		</div>
+		<div class='card'>
+			<div class='card-front'><img id="letter-A" src="img/A.svg"></div>
+			<div id="letter-A" class='card-back'></div>
+		</div>
+		<div class='card'>
+			<div class='card-front'><img id="letter-T"src="img/T.svg"></div>
+			<div id="letter-T" class='card-back'></div>
+		</div>
 	</div>
-	<div class="button-container">
-		<button type="submit" style="margin-top: 10px;" onclick="facedown()" id="startButton"> Start Game </button>
-		<button type="submit" style="margin-top: 10px; display: none;" onclick="restart()" id="restartButton"> Restart </button>
-		<script type="text/javascript">
-			function restart() {
-				window.location.href = window.location.pathname + '?refresh=true';
-			}
-
-			if (window.location.search.includes('refresh=true')) {
-				document.getElementById('startButton').style.display = 'none';
-				facedown();
-			}
-		</script>
-		<p id="scoreTag"> Score: </p>
-		<br>
-		<p id='winParagraph' style="display: none;"> Congrats, you won the game! </p>
-		<p id='loseParagraph' style="display: none;"> You lost the game! </p>
+	<div id="button-container">
+		<button id='start-button' onclick="startGame()"> Start Game </button>
+		<button id='restart-button' onclick="restart()"> Restart </button>
+		<button id='flip-button' onclick="flipCards()"> Flip cards </button>
 	</div>
-	<div>
-		<p class="text"> Note: You must click the cards in the correct order of my name 'Murat'. You earn 100 points and win the game if you correctly follow the sequence. Otherwise, you lose the game.</p>
-	</div>
+	<div id='score-container'>Score: 0</div>
 </body>
 </html>

@@ -51,7 +51,7 @@ hr {
 }
 
 /* game.html */
-.letters {
+/*.letters {
 	text-align: center;
 }
 
@@ -65,4 +65,88 @@ hr {
 
 .button-container {
 	text-align: center;
+}*/
+
+.card-container {
+	perspective: 1000px;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.card {
+	width: 200px;
+	height: 200px;
+	position: relative;
+	transform-style: preserve-3d;
+	transition: transform 0.5s;
+}
+
+.card-flipped {
+	transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+	width: 95%;
+	height: 95%;
+	position: absolute;
+	backface-visibility: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-back {
+	background-color: #222;
+	transform: rotateY(180deg);
+	cursor:  pointer;
+}
+
+.card-front img {
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+#button-container {
+	padding-top: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+#start-button, #restart-button {
+	display: inline-block;
+	padding: 15px 30px;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	border-radius: 8px;
+	color: #222; /* Blue color for text */
+	background-color: #D4CAA8; /* background */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+	cursor: pointer;
+	transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#start-button:hover {
+	background-color: #9F987F; /* Blue background on hover */
+	color: #fff; /* White text on hover */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}
+
+#restart-button {
+	display: none;
+}
+
+#flip-button {
+	display: none;
+}
+
+#score-container {
+	display: none;
+	justify-content: center;
+	margin-top: 10px;
 }

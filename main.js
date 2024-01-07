@@ -1,75 +1,107 @@
-function facedown() {
-	document.getElementById('startButton').style.display = 'none';
-
-	const images = document.querySelectorAll('div.letters > img');
-
-	// Creating a randomized array
-	const array = [0,1,2,3,4];
+// NEW PART
+function shuffle() {
+	const array = [0, 1, 2, 3, 4];
 	const shuffledArray = array.sort((a, b) => 0.5 - Math.random());
-
-	// Matching new sources of the images
-	arr = [images[0], images[1], images[2], images[3], images[4]];  // Copying images 
-	srcs = ["img/M.svg", "img/U.svg", "img/R.svg", "img/A.svg", "img/T.svg"]
-	for (let i=0; i<5; i++) {
-		arr[i].src = srcs[shuffledArray[i]];
-	}
-
-	// Delaying for two seconds and facing down
-	setTimeout(function() {	
-		arr = [images[0], images[1], images[2], images[3], images[4]];
-		for (let i=0; i<5; i++) {
-			arr[i].src = "img/letterBG.svg";
-		}
-	}, 2000);
-
-	// Delaying two seconds user clicking the images for the game to be simultaneous 
-	setTimeout(makeup.bind(null, shuffledArray), 2000);
+	return shuffledArray;
 }
 
+function makeCardsUnclickable() {
+	const cards = document.querySelectorAll('.card');
+	cards.forEach(card => {card.style.pointerEvents = 'none';})
+}
 
-function makeup(answers) {
+function makeCardsClickable() {
+	const cards = document.querySelectorAll('.card');
+	cards.forEach(card => {card.style.pointerEvents = 'auto';})
+}
+
+function makeStartUnvisible() {
+	const start = document.getElementById('start-button');
+	start.style.display = 'none';
+}
+
+function makeRestartUnvisible() {
+	const start = document.getElementById('restart-button');
+	start.style.display = 'none';
+}
+
+function makeRestartVisible() {
+	const start = document.getElementById('restart-button');
+	start.style.display = 'flex';
+}
+
+function flipSingleCard(card) {
+	card.classList.toggle('card-flipped');
+}
+
+function flipCards() {
+	const cards = document.querySelectorAll('.card');
+	for (let i=0; i<cards.length; i++) {
+		cards[i].classList.toggle('card-flipped');
+	}
+}
+
+function changeCardOrder(shuffledArray) {
+	const cardContainer = document.querySelector('.card-container');
+	const cards = Array.from(document.querySelectorAll('.card'));
+	
+	// Shuffling cards randomly 
+	temp = [0, 0, 0, 0, 0];
+	for (let i=0; i<cards.length; i++) {
+		temp[i] = cards[shuffledArray[i]];
+	}
+
+	cardsArray = temp;
+
+	// Displaying randomly shuffled cards via toggling
+	cards.forEach(card => cardContainer.removeChild(card));
+	cardsArray.forEach(card => cardContainer.appendChild(card));
+}
+
+function updateScore(points) {
+	const scoreElement = document.getElementById('score-container');
+	scoreElement.innerHTML = `Score: ${points}`;
+}
+
+function startGame(restarted=false) {
+	makeStartUnvisible();
+	makeRestartUnvisible();
+	document.getElementById('score-container').style.display = 'flex';
+	const shuffledArray = shuffle();
+	changeCardOrder(shuffledArray);
+	setTimeout(flipCards.bind(null), 1500);
+	setTimeout(checkAnswers.bind(null, shuffledArray), 1500);
+}
+
+function restart() {
+	location.reload();
+}
+
+function checkAnswers(answerKey) {
 	let i = 0;
 	let score = 0;
 
 	// Selecting all letters and listening events through for loop
-	const images = document.querySelectorAll('div.letters > img');
-	[...images].forEach((image, index) => {
-		image.addEventListener('click', function() {
-			// Checking if user correctly picked the cards
-			if (answers[index] == i) {
+	const cards = document.querySelectorAll('.card');
+	[...cards].forEach((card, index) => {
+		card.addEventListener('click', function() {
+			if (answerKey[index] == i) {
 				score += 20;
 				if (score == 100) {
 					updateScore(100);
-					makeUnclickable();
-					document.getElementById('winParagraph').style.display = 'inline-block';
+					makeCardsUnclickable();
 					makeRestartVisible();
+					window.alert('You won!');
 				}
 				updateScore(score);
+				flipSingleCard(card);
 			}
 			else {
-				makeUnclickable();
-				document.getElementById('loseParagraph').style.display = 'inline-block';
-				document.getElementById('scoreTag').style.display = 'none';
+				makeCardsUnclickable();
 				makeRestartVisible();
+				window.alert('You lost!');
 			}
-			i+=1;
+			i += 1;
 		});
 	})
-}
-
-
-function updateScore(points) {
-	const scoreElement = document.getElementById('scoreTag');
-	scoreElement.innerHTML = `Score: ${points}`;
-}
-
-function makeRestartVisible() {
-	const start = document.getElementById('startButton');
-	const restart = document.getElementById('restartButton');
-	restart.style.display = 'inline-block';
-	start.style.display = "none";
-}
-
-function makeUnclickable() {
-	document.getElementById('image-container').style.pointerEvents = 'none';
 }
